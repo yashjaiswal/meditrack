@@ -11,7 +11,3 @@ public class Patient {
     private String phoneNumber;
     private Gender gender;
 }
-
-enum Gender {
-    male, female, others;
-}
