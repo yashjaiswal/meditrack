@@ -26,6 +26,9 @@ public class AppointmentsEntity {
     @Column
     private String comments;
 
+    @Column
+    private Boolean isPresent;
+
     @Column(nullable = false)
     @CreatedDate
     private LocalDateTime createdAt;
