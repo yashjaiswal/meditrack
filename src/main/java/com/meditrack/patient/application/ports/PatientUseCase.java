@@ -4,5 +4,5 @@ import com.meditrack.patient.domain.AddPatientRequest;
 
 public interface PatientUseCase {
 
-    void createPatient(AddPatientRequest addPatientRequest);
+    Long createPatient(AddPatientRequest addPatientRequest);
 }

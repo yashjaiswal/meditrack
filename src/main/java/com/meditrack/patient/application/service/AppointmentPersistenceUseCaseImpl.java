@@ -5,6 +5,7 @@ import com.meditrack.patient.adapter.out.db.repo.AppointmentsRepository;
 import com.meditrack.patient.application.ports.AppointmentPersistenceUseCase;
 import com.meditrack.patient.domain.AppointmentRequest;
 import com.meditrack.patient.domain.PatientAndAppointment;
+import com.meditrack.patient.domain.errors.PatientOrAppointmentNotFound;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -46,6 +47,9 @@ public class AppointmentPersistenceUseCaseImpl implements AppointmentPersistence
             AppointmentsEntity appointmentsEntity = appointmentsRepository.findByPatientIdAndAppointmentId(patientId, appointmentId);
             appointmentsEntity.setIsPresent(true);
             appointmentsRepository.save(appointmentsEntity);
+        } else {
+            log.error("Either patient or appointment or both not found. patientId={} appointmentId={}", patientId, appointmentId);
+            throw new PatientOrAppointmentNotFound("Either patient or appointment not found");
         }
     }
 }

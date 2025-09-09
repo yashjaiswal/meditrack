@@ -19,7 +19,7 @@ public class PatientPersistenceUseCaseImpl implements PatientPersistenceUseCase 
     private final AppointmentPersistenceUseCase appointmentPersistenceUseCase;
 
     @Override
-    public void storePatient(AddPatientRequest addPatientRequest) {
+    public Long storePatient(AddPatientRequest addPatientRequest) {
         PatientsEntity patientsEntity = new PatientsEntity();
         patientsEntity.setName(addPatientRequest.getName());
         patientsEntity.setDateOfBirth(addPatientRequest.getDateOfBirth().atStartOfDay());
@@ -28,13 +28,7 @@ public class PatientPersistenceUseCaseImpl implements PatientPersistenceUseCase 
         patientsEntity.setPhoneNumber(addPatientRequest.getPhoneNumber());
         Long patientId = patientsRepository.save(patientsEntity).getId();
 
-        if (Boolean.TRUE.equals(addPatientRequest.getScheduleFirstAppointment())) {
-            AppointmentRequest appointmentRequest = new AppointmentRequest();
-            appointmentRequest.setPatientId(patientId);
-            appointmentRequest.setAppointmentDate(addPatientRequest.getFirstAppointmentDate());
-
-            appointmentPersistenceUseCase.storeAppointment()
-        }
+        return patientId;
 
     }
 

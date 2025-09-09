@@ -1,4 +1,4 @@
-package com.meditrack.patient.adapter.out.db.entity;
+package com.meditrack.medicine.adapter.out.db.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;

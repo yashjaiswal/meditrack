@@ -11,7 +11,4 @@ public class AddPatientRequest {
     private Gender gender;
     private String comments;
 
-    private Boolean scheduleFirstAppointment;
-    private LocalDate firstAppointmentDate;
-
 }

@@ -4,5 +4,5 @@ import com.meditrack.patient.domain.AddPatientRequest;
 
 public interface PatientPersistenceUseCase {
 
-    void storePatient(AddPatientRequest addPatientRequest);
+    Long storePatient(AddPatientRequest addPatientRequest);
 }

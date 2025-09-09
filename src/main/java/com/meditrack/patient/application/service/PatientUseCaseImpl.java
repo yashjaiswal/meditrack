@@ -14,8 +14,8 @@ public class PatientUseCaseImpl implements PatientUseCase {
 
     private final PatientPersistenceUseCase patientPersistenceUseCase;
 
-    public void createPatient(AddPatientRequest addPatientRequest) {
-        patientPersistenceUseCase.storePatient(addPatientRequest);
+    public Long createPatient(AddPatientRequest addPatientRequest) {
+        return patientPersistenceUseCase.storePatient(addPatientRequest);
 
     }
 }

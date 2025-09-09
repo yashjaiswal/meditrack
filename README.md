@@ -4,4 +4,6 @@
 2. Docker setup for Postgres DB
 3. Direct commits to Github
 4. Flyway based migrations for Postgres
-5. 
+5. Exception handling
+6. Building and coding iteratively
+7. 
