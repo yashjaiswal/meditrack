@@ -9,4 +9,6 @@ public interface AccountsPersistenceUseCase {
 
     UserAccount fetchAccount(String userName);
 
+    Boolean existsByUserIdAndUserName(Long userId, String userName);
+
 }

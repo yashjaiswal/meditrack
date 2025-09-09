@@ -12,4 +12,6 @@ public interface AccountsRepository extends JpaRepository<AccountsEntity, Long> 
     boolean existsByEmail(String email);
 
     AccountsEntity findByUserNameIgnoreCase(String userName);
+
+    boolean existsByIdAndUserName(Long id, String userName);
 }

@@ -62,6 +62,12 @@ public class AccountsPersistenceUseCaseImpl implements AccountsPersistenceUseCas
         return userAccount;
     }
 
+    @Override
+    public Boolean existsByUserIdAndUserName(Long userId, String userName) {
+        return accountsRepository.existsByIdAndUserName(userId, userName);
+    }
+
+
     private void validateRequest(AccountCreationRequest accountCreationRequest) {
         if (accountsRepository.existsByUserName(accountCreationRequest.getUserName())) {
             log.error("Account already exists with username. userName={} email={}", accountCreationRequest.getUserName(), accountCreationRequest.getEmail());
