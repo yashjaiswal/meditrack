@@ -16,3 +16,6 @@ spring:
   flyway:
     enabled: true
     locations: classpath:db/migration
+
+  secrets:
+    accounts-key: d04be89f7f6c4782baf7c95f60d337d7b9af5b8016ef3495c1e6f4a6c3c6b27d

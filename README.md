@@ -6,4 +6,11 @@
 4. Flyway based migrations for Postgres
 5. Exception handling
 6. Building and coding iteratively
-7. 
+
+
+### Usecase covered
+1. JWT token based login with credentials
+2. Role based account creation
+3. Performing auth wherever required
+4. Fetching medicines, creating patients, creating appointments, prescribing medicines
+5. 
