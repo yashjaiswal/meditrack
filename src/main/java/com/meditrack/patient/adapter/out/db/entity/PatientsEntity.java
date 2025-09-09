@@ -2,7 +2,7 @@ package com.meditrack.patient.adapter.out.db.entity;
 
 import com.meditrack.patient.domain.Gender;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
