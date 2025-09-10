@@ -43,8 +43,8 @@ public class AppointmentPersistenceUseCaseImpl implements AppointmentPersistence
 
     @Override
     public void markAsPresent(Long patientId, Long appointmentId) {
-        if (appointmentsRepository.existsByPatientIdAndAppointmentId(patientId, appointmentId)) {
-            AppointmentsEntity appointmentsEntity = appointmentsRepository.findByPatientIdAndAppointmentId(patientId, appointmentId);
+        if (appointmentsRepository.existsByIdAndPatientId(appointmentId, patientId)) {
+            AppointmentsEntity appointmentsEntity = appointmentsRepository.findByIdAndPatientId(appointmentId, patientId);
             appointmentsEntity.setIsPresent(true);
             appointmentsRepository.save(appointmentsEntity);
         } else {

@@ -5,10 +5,7 @@ import com.meditrack.patient.domain.AppointmentRequest;
 import com.meditrack.patient.domain.PatientAndAppointment;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
@@ -18,7 +15,7 @@ public class AppointmentController {
 
     private final AppointmentPersistenceUseCase appointmentPersistenceUseCase;
 
-    @PutMapping
+    @PostMapping
     PatientAndAppointment scheduleAppointment(AppointmentRequest appointmentRequest) {
         PatientAndAppointment patientAndAppointment =
                 appointmentPersistenceUseCase.storeAppointment(appointmentRequest);

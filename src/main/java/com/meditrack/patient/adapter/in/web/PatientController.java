@@ -5,10 +5,7 @@ import com.meditrack.patient.domain.AddPatientRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
@@ -18,7 +15,7 @@ public class PatientController {
 
     private final PatientUseCase patientUseCase;
 
-    @PutMapping
+    @PostMapping
     ResponseEntity<Long> addNewPatient(@RequestBody AddPatientRequest addPatientRequest) {
         return ResponseEntity.ok(patientUseCase.createPatient(addPatientRequest));
 
