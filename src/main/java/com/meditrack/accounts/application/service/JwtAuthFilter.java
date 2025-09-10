@@ -48,6 +48,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                             new UsernamePasswordAuthenticationToken(
                                     userName, null, Collections.emptyList());
                     SecurityContextHolder.getContext().setAuthentication(authToken);
+                    request.setAttribute(ApplicationConstants.USER_ID, userId);
 
                 } else {
                     throw new InvalidTokenException("UserName missing in the token");
