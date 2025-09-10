@@ -2,7 +2,7 @@ package com.meditrack.accounts.application.service;
 
 import com.meditrack.accounts.domain.UserAccount;
 import com.meditrack.app.ApplicationConstants;
-import com.meditrack.app.MeditrackAppConfig;
+import com.meditrack.app.config.MeditrackAppParameters;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -20,7 +20,7 @@ import java.util.Date;
 public class TokensUtil {
 
 
-    private final MeditrackAppConfig meditrackAppConfig;
+    private final MeditrackAppParameters meditrackAppParameters;
 
     public String generateToken(UserAccount userAccount) {
 
@@ -39,7 +39,7 @@ public class TokensUtil {
     }
 
     private Key getSigningKey() {
-        return Keys.hmacShaKeyFor(meditrackAppConfig.getAccountsKey().getBytes());
+        return Keys.hmacShaKeyFor(meditrackAppParameters.getAccountsKey().getBytes());
     }
 
     public Claims extractClaims(String token) {
