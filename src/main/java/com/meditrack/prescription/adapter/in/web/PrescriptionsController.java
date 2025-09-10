@@ -4,6 +4,7 @@ import com.meditrack.accounts.domain.errors.InvalidTokenException;
 import com.meditrack.prescription.application.ports.PrescriptionsUseCase;
 import com.meditrack.prescription.domain.PrescriptionCreationRequest;
 import com.meditrack.prescription.domain.PrescriptionCreationResponse;
+import com.meditrack.prescription.domain.UpdatePrescriptionRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -34,5 +35,16 @@ public class PrescriptionsController {
         return prescriptionCreationResponse;
     }
 
+    @PostMapping
+    void insertMedicinesIntoPrescription(@RequestAttribute(USER_ID) Long userId,
+                                         @RequestBody UpdatePrescriptionRequest updatePrescriptionRequest) {
+        if (Objects.isNull(userId)) {
+            throw new InvalidTokenException("UserId not found");
+        }
 
+        prescriptionsUseCase.updatePrescription(updatePrescriptionRequest);
+
+
+
+    }
 }
