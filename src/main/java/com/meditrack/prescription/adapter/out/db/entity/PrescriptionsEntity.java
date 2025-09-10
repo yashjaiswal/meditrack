@@ -1,4 +1,4 @@
-package com.meditrack.patient.adapter.out.db.entity;
+package com.meditrack.prescription.adapter.out.db.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -19,6 +19,9 @@ public class PrescriptionsEntity {
 
     @Column
     private Long patientId;
+
+    @Column
+    private Long doctorId;
 
     @Column
     private Long appointmentId;
