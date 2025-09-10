@@ -1,4 +1,4 @@
-package com.meditrack.app;
+package com.meditrack.app.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

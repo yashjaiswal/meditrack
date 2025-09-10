@@ -1,4 +1,4 @@
-package com.meditrack.app;
+package com.meditrack.app.config;
 
 import com.meditrack.accounts.application.service.JwtAuthFilter;
 import lombok.RequiredArgsConstructor;
@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -23,7 +22,16 @@ public class SecurityConfig {
 
         httpSecurity.csrf(csrf -> csrf.disable())
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/accounts/signup", "/accounts/login").permitAll()
+                .authorizeHttpRequests(
+                        auth -> auth
+                                // allow Swagger & API docs
+                                .requestMatchers(
+                                        "/v3/api-docs/**",
+                                        "/swagger-ui/**",
+                                        "/swagger-ui.html"
+                                ).permitAll()
+                                // allow auth endpoints
+                                .requestMatchers("/accounts/signup", "/accounts/login").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
