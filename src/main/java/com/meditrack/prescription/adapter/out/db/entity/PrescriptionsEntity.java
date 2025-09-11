@@ -1,7 +1,10 @@
 package com.meditrack.prescription.adapter.out.db.entity;
 
+import com.meditrack.prescription.domain.PrescriptionDetails;
+import io.hypersistence.utils.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -26,17 +29,9 @@ public class PrescriptionsEntity {
     @Column
     private Long appointmentId;
 
-    @Column
-    private Long medicineId;
-
-    @Column
-    private String dosage;
-
-    @Column
-    private String specialInstruction;
-
-    @Column
-    private Integer durationInDays;
+    @Type(JsonType.class)
+    @Column(columnDefinition = "jsonb")
+    private PrescriptionDetails prescriptionDetails;
 
     @Column(nullable = false)
     @CreatedDate

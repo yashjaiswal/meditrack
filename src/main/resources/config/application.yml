@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/meditrack
-    username: meditrack_user
-    password: secret
+    username: postgres
+    password: postgres
     driver-class-name: org.postgresql.Driver
 
   jpa:
