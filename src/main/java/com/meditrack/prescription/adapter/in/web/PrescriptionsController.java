@@ -35,16 +35,14 @@ public class PrescriptionsController {
         return prescriptionCreationResponse;
     }
 
-    @PostMapping
-    void insertMedicinesIntoPrescription(@RequestAttribute(USER_ID) Long userId,
-                                         @RequestBody UpdatePrescriptionRequest updatePrescriptionRequest) {
+    @PatchMapping
+    void updatePrescriptions(@RequestAttribute(USER_ID) Long userId,
+                             @RequestBody UpdatePrescriptionRequest updatePrescriptionRequest) {
         if (Objects.isNull(userId)) {
             throw new InvalidTokenException("UserId not found");
         }
 
         prescriptionsUseCase.updatePrescription(updatePrescriptionRequest);
-
-
 
     }
 }
