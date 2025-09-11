@@ -31,7 +31,7 @@ public class SecurityConfig {
                                         "/swagger-ui.html"
                                 ).permitAll()
                                 // allow auth endpoints
-                                .requestMatchers("/accounts/signup", "/accounts/login").permitAll()
+                                .requestMatchers("/v1/accounts/signup", "/v1/accounts/login").permitAll()
                         .anyRequest().authenticated())
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 

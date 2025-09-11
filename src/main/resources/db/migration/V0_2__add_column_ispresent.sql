@@ -1,1 +1,1 @@
-ALTER TABLE appointments ADD COLUMN is_present BOOLEAN;
+ALTER TABLE IF EXISTS appointments ADD COLUMN IF NOT EXISTS is_present BOOLEAN;

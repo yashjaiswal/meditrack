@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS accounts  (
-    id bigint PRIMARY KEY,
+    id bigserial PRIMARY KEY,
     user_name text NOT NULL,
     password text NOT NULL,
     full_name text NOT NULL,
