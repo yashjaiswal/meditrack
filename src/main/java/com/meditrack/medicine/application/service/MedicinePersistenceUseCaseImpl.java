@@ -6,6 +6,7 @@ import com.meditrack.medicine.application.ports.MedicinePersistenceUseCase;
 import com.meditrack.medicine.domain.Medicine;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,6 +26,34 @@ public class MedicinePersistenceUseCaseImpl implements MedicinePersistenceUseCas
                 .toList();
 
         return medicines;
+    }
+
+    @Override
+    public void storeMedicines(List<Medicine> medicineList) {
+
+        for (Medicine medicine : medicineList) {
+            MedicinesEntity medicinesEntity = new MedicinesEntity();
+            medicinesEntity.setName(medicine.getName());
+            medicinesEntity.setStrengthInMg(medicine.getStrengthInMg());
+            if (StringUtils.isNotBlank(medicine.getComments())) {
+                medicinesEntity.setComments(medicine.getComments());
+            }
+
+            medicinesRepository.save(medicinesEntity);
+        }
+    }
+
+    @Override
+    public Medicine getMedicine(Long medicineId) {
+        MedicinesEntity medicinesEntity = medicinesRepository.findById(medicineId).get();
+
+        Medicine medicine = new Medicine();
+        medicine.setName(medicinesEntity.getName());
+        medicine.setStrengthInMg(medicinesEntity.getStrengthInMg());
+        medicine.setComments(medicinesEntity.getComments());
+
+        return medicine;
+
     }
 
     private Medicine toDto(MedicinesEntity medicinesEntity) {

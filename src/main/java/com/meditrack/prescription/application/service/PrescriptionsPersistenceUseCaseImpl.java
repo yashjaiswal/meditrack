@@ -3,8 +3,9 @@ package com.meditrack.prescription.application.service;
 import com.meditrack.prescription.adapter.out.db.entity.PrescriptionsEntity;
 import com.meditrack.prescription.adapter.out.db.repo.PrescriptionsRepository;
 import com.meditrack.prescription.application.ports.PrescriptionsPersistenceUseCase;
-import com.meditrack.prescription.domain.Dosage;
+import com.meditrack.prescription.domain.PrescriptionDosage;
 import com.meditrack.prescription.domain.PrescriptionDetails;
+import com.meditrack.prescription.domain.PrescriptionMetadataAndDetails;
 import com.meditrack.prescription.domain.UpdatePrescriptionRequest;
 import com.meditrack.prescription.domain.errors.PrescriptionAlreadyExistsException;
 import lombok.RequiredArgsConstructor;
@@ -39,12 +40,26 @@ public class PrescriptionsPersistenceUseCaseImpl implements PrescriptionsPersist
     public void updatePrescription(UpdatePrescriptionRequest updatePrescriptionRequest) {
         PrescriptionsEntity prescriptionsEntity = prescriptionsRepository.findById(updatePrescriptionRequest.getPrescriptionId()).get();
 
-        List<Dosage> dosages = updatePrescriptionRequest.getDosages();
+        List<PrescriptionDosage> prescriptionDosages = updatePrescriptionRequest.getPrescriptionDosages();
         PrescriptionDetails prescriptionDetails = new PrescriptionDetails();
-        prescriptionDetails.setDosageList(dosages);
+        prescriptionDetails.setPrescriptionDosageList(prescriptionDosages);
 
         prescriptionsEntity.setPrescriptionDetails(prescriptionDetails);
         prescriptionsRepository.save(prescriptionsEntity);
 
+    }
+
+    @Override
+    public PrescriptionMetadataAndDetails fetchPrescriptionMetadataAndDetails(Long prescriptionId) {
+        PrescriptionsEntity prescriptionsEntity = prescriptionsRepository.findById(prescriptionId).get();
+        PrescriptionMetadataAndDetails prescriptionMetadataAndDetails = new PrescriptionMetadataAndDetails();
+
+        prescriptionMetadataAndDetails.setAppointmentId(prescriptionsEntity.getAppointmentId());
+        prescriptionMetadataAndDetails.setDoctorId(prescriptionsEntity.getDoctorId());
+        prescriptionMetadataAndDetails.setPrescriptionDetails(prescriptionsEntity.getPrescriptionDetails());
+        prescriptionMetadataAndDetails.setPrescriptionDate(prescriptionsEntity.getCreatedAt());
+        prescriptionMetadataAndDetails.setPatientId(prescriptionsEntity.getPatientId());
+
+        return prescriptionMetadataAndDetails;
     }
 }

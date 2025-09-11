@@ -11,4 +11,5 @@ public interface AccountsPersistenceUseCase {
 
     Boolean existsByUserIdAndUserName(Long userId, String userName);
 
+    String findDoctorName(Long doctorId);
 }

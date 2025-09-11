@@ -6,6 +6,7 @@ import com.meditrack.patient.application.ports.AppointmentPersistenceUseCase;
 import com.meditrack.patient.application.ports.PatientPersistenceUseCase;
 import com.meditrack.patient.domain.AddPatientRequest;
 import com.meditrack.patient.domain.AppointmentRequest;
+import com.meditrack.patient.domain.Patient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,19 @@ public class PatientPersistenceUseCaseImpl implements PatientPersistenceUseCase 
 
         return patientId;
 
+    }
+
+    @Override
+    public Patient getPatientDetails(Long patientId) {
+        PatientsEntity patientsEntity = patientsRepository.findById(patientId).get();
+
+        Patient patient = new Patient();
+        patient.setName(patientsEntity.getName());
+        patient.setGender(patientsEntity.getGender());
+        patient.setPhoneNumber(patientsEntity.getPhoneNumber());
+        patient.setDateOfBirth(patientsEntity.getDateOfBirth());
+
+        return patient;
     }
 
 

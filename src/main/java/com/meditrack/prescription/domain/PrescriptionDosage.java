@@ -3,7 +3,7 @@ package com.meditrack.prescription.domain;
 import lombok.Data;
 
 @Data
-public class Dosage {
+public class PrescriptionDosage {
 
     private Long medicineId;
     private DosageType dosageType;

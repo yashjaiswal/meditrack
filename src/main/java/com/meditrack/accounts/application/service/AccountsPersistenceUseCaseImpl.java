@@ -67,6 +67,11 @@ public class AccountsPersistenceUseCaseImpl implements AccountsPersistenceUseCas
         return accountsRepository.existsByIdAndUserName(userId, userName);
     }
 
+    @Override
+    public String findDoctorName(Long doctorId) {
+        return accountsRepository.findById(doctorId).get().getFullName();
+    }
+
 
     private void validateRequest(AccountCreationRequest accountCreationRequest) {
         if (accountsRepository.existsByUserName(accountCreationRequest.getUserName())) {
