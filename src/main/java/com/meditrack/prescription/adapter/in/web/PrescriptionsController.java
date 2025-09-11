@@ -7,6 +7,7 @@ import com.meditrack.prescription.domain.PrescriptionCreationResponse;
 import com.meditrack.prescription.domain.UpdatePrescriptionRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
@@ -44,5 +45,10 @@ public class PrescriptionsController {
 
         prescriptionsUseCase.updatePrescription(updatePrescriptionRequest);
 
+    }
+
+    @GetMapping("/{prescriptionId}")
+    ResponseEntity<byte[]> generatePDFForPrescription(@PathVariable Long prescriptionId) {
+        return prescriptionsUseCase.generatePrescriptionPDF(prescriptionId);
     }
 }

@@ -1,1 +1,1 @@
-ALTER TABLE prescriptions ADD COLUMN doctor_id bigint NOT NULL;
+ALTER TABLE IF EXISTS prescriptions ADD COLUMN IF NOT EXISTS doctor_id bigint NOT NULL;

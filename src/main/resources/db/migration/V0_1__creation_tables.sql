@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS patients  (
-    id bigint PRIMARY KEY,
+    id bigserial PRIMARY KEY,
     name text NOT NULL,
     date_of_birth TIMESTAMP NOT NULL,
     phone_number text,
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS patients  (
 );
 
 CREATE TABLE IF NOT EXISTS appointments  (
-    id bigint PRIMARY KEY,
+    id bigserial PRIMARY KEY,
     patient_id bigint NOT NULL,
     date_of_appointment TIMESTAMP NOT NULL,
     comments text,
@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS appointments  (
 );
 
 CREATE TABLE IF NOT EXISTS prescriptions (
-    id bigint PRIMARY KEY,
+    id bigserial PRIMARY KEY,
     patient_id bigint NOT NULL,
     appointment_id bigint NOT NULL,
     medicine_id bigint NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS prescriptions (
 );
 
 CREATE TABLE IF NOT EXISTS medicines (
-    id bigint PRIMARY KEY,
+    id bigserial PRIMARY KEY,
     name text,
     strength_in_mg int,
     comments text,
