@@ -34,6 +34,9 @@ public class PatientsEntity {
     @Column
     private String comments;
 
+    @Column
+    private String email;
+
     @Column(nullable = false)
     @CreationTimestamp
     private LocalDateTime createdAt;

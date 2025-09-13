@@ -27,6 +27,7 @@ public class PatientPersistenceUseCaseImpl implements PatientPersistenceUseCase 
         patientsEntity.setGender(addPatientRequest.getGender());
         patientsEntity.setComments(addPatientRequest.getComments());
         patientsEntity.setPhoneNumber(addPatientRequest.getPhoneNumber());
+        patientsEntity.setEmail(addPatientRequest.getEmail());
         Long patientId = patientsRepository.save(patientsEntity).getId();
 
         return patientId;
@@ -42,6 +43,7 @@ public class PatientPersistenceUseCaseImpl implements PatientPersistenceUseCase 
         patient.setGender(patientsEntity.getGender());
         patient.setPhoneNumber(patientsEntity.getPhoneNumber());
         patient.setDateOfBirth(patientsEntity.getDateOfBirth());
+        patient.setEmail(patientsEntity.getEmail());
 
         return patient;
     }

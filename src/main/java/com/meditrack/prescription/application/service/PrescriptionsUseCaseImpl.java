@@ -4,6 +4,7 @@ import com.lowagie.text.Document;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfWriter;
 import com.meditrack.accounts.application.ports.AccountsPersistenceUseCase;
+import com.meditrack.mail.application.ports.MailSenderUseCase;
 import com.meditrack.medicine.application.ports.MedicinePersistenceUseCase;
 import com.meditrack.medicine.domain.Medicine;
 import com.meditrack.patient.application.ports.AppointmentPersistenceUseCase;
@@ -16,6 +17,7 @@ import com.meditrack.prescription.domain.PrescriptionCreationRequest;
 import com.meditrack.prescription.domain.PrescriptionDosage;
 import com.meditrack.prescription.domain.PrescriptionMetadataAndDetails;
 import com.meditrack.prescription.domain.UpdatePrescriptionRequest;
+import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -39,6 +41,7 @@ public class PrescriptionsUseCaseImpl implements PrescriptionsUseCase {
     private final PatientPersistenceUseCase patientPersistenceUseCase;
     private final AccountsPersistenceUseCase accountsPersistenceUseCase;
     private final MedicinePersistenceUseCase medicinePersistenceUseCase;
+    private final MailSenderUseCase mailSenderUseCase;
 
     @Override
     public Long createPrescription(Long doctorId, PrescriptionCreationRequest prescriptionCreationRequest) {
@@ -56,7 +59,7 @@ public class PrescriptionsUseCaseImpl implements PrescriptionsUseCase {
     }
 
     @Override
-    public ResponseEntity<byte[]> generatePrescriptionPDF(Long prescriptionId) {
+    public ResponseEntity<byte[]> generatePrescriptionPDF(Long prescriptionId) throws MessagingException {
 
         PrescriptionMetadataAndDetails prescriptionMetadataAndDetails =
                 prescriptionsPersistenceUseCase.fetchPrescriptionMetadataAndDetails(prescriptionId);
@@ -102,13 +105,14 @@ public class PrescriptionsUseCaseImpl implements PrescriptionsUseCase {
         String fileName = "prescription-" + patient.getName() + prescriptionMetadataAndDetails.getPrescriptionDate().toString() + ".pdf";
 
         // Return as ResponseEntity
-        byte[] pdfBytes = out.toByteArray();
+        byte[] prescriptionPdfBytes = out.toByteArray();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
         headers.setContentDispositionFormData("attachment", fileName);
-        headers.setContentLength(pdfBytes.length);
+        headers.setContentLength(prescriptionPdfBytes.length);
 
-        return new ResponseEntity<>(pdfBytes, headers, HttpStatus.OK);
+        mailSenderUseCase.sendPrescriptionToEmail(prescriptionPdfBytes, patient.getEmail(), fileName);
+        return new ResponseEntity<>(prescriptionPdfBytes, headers, HttpStatus.OK);
     }
 
     private AppointmentRequest formAppointmentRequest(UpdatePrescriptionRequest updatePrescriptionRequest) {

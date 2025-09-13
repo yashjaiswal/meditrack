@@ -10,5 +10,6 @@ public class AddPatientRequest {
     private String phoneNumber;
     private Gender gender;
     private String comments;
+    private String email;
 
 }
