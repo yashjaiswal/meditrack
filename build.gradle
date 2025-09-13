@@ -57,6 +57,13 @@ dependencies {
     // For generating PDFs for prescriptions
     implementation 'com.github.librepdf:openpdf:1.3.39'
 
+    // For sending emails via Gmail SMTP
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+    // For Redis
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
+
 
 
 }

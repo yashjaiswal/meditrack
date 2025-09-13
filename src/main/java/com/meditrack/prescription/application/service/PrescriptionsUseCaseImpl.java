@@ -102,13 +102,13 @@ public class PrescriptionsUseCaseImpl implements PrescriptionsUseCase {
         String fileName = "prescription-" + patient.getName() + prescriptionMetadataAndDetails.getPrescriptionDate().toString() + ".pdf";
 
         // Return as ResponseEntity
-        byte[] pdfBytes = out.toByteArray();
+        byte[] prescriptionPdfBytes = out.toByteArray();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
         headers.setContentDispositionFormData("attachment", fileName);
-        headers.setContentLength(pdfBytes.length);
+        headers.setContentLength(prescriptionPdfBytes.length);
 
-        return new ResponseEntity<>(pdfBytes, headers, HttpStatus.OK);
+        return new ResponseEntity<>(prescriptionPdfBytes, headers, HttpStatus.OK);
     }
 
     private AppointmentRequest formAppointmentRequest(UpdatePrescriptionRequest updatePrescriptionRequest) {
