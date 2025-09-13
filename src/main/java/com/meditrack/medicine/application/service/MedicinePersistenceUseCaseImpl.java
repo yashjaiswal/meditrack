@@ -61,6 +61,8 @@ public class MedicinePersistenceUseCaseImpl implements MedicinePersistenceUseCas
         Medicine medicine = new Medicine();
         medicine.setName(medicinesEntity.getName());
         medicine.setStrengthInMg(medicinesEntity.getStrengthInMg());
+        medicine.setComments(medicinesEntity.getComments());
+        medicine.setMedicineId(medicinesEntity.getId());
 
         return medicine;
     }

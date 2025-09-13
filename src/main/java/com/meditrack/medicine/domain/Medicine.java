@@ -6,6 +6,7 @@ import lombok.Data;
 public class Medicine {
 
     private String name;
+    private Long medicineId;
     private Integer strengthInMg;
     private String comments;
 }
