@@ -5,6 +5,7 @@ import com.meditrack.prescription.application.ports.PrescriptionsUseCase;
 import com.meditrack.prescription.domain.PrescriptionCreationRequest;
 import com.meditrack.prescription.domain.PrescriptionCreationResponse;
 import com.meditrack.prescription.domain.UpdatePrescriptionRequest;
+import jakarta.mail.MessagingException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -48,7 +49,7 @@ public class PrescriptionsController {
     }
 
     @GetMapping("/{prescriptionId}")
-    ResponseEntity<byte[]> generatePDFForPrescription(@PathVariable Long prescriptionId) {
+    ResponseEntity<byte[]> generatePDFForPrescription(@PathVariable Long prescriptionId) throws MessagingException {
         return prescriptionsUseCase.generatePrescriptionPDF(prescriptionId);
     }
 }

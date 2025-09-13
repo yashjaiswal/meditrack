@@ -11,4 +11,5 @@ public class Patient {
     private LocalDateTime dateOfBirth;
     private String phoneNumber;
     private Gender gender;
+    private String email;
 }

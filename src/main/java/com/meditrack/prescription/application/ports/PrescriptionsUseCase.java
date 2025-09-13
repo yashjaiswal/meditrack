@@ -2,6 +2,7 @@ package com.meditrack.prescription.application.ports;
 
 import com.meditrack.prescription.domain.PrescriptionCreationRequest;
 import com.meditrack.prescription.domain.UpdatePrescriptionRequest;
+import jakarta.mail.MessagingException;
 import org.springframework.http.ResponseEntity;
 
 public interface PrescriptionsUseCase {
@@ -10,5 +11,5 @@ public interface PrescriptionsUseCase {
 
     void updatePrescription(UpdatePrescriptionRequest updatePrescriptionRequest);
 
-    ResponseEntity<byte[]> generatePrescriptionPDF(Long prescriptionId);
+    ResponseEntity<byte[]> generatePrescriptionPDF(Long prescriptionId) throws MessagingException;
 }
