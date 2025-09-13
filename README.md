@@ -13,5 +13,5 @@
 1. JWT token based login with credentials
 2. Role based account creation (doctor, nurse, lab-technician)
 3. Performing auth wherever required
-4. Fetching medicines, creating patients, creating appointments, prescribing medicines
+4. Fetching prescriptionDosages, creating patients, creating appointments, prescribing prescriptionDosages
 5. 

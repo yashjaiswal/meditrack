@@ -7,5 +7,5 @@ import java.util.List;
 @Data
 public class PrescriptionDetails {
 
-    private List<Dosage> dosageList;
+    private List<PrescriptionDosage> prescriptionDosageList;
 }

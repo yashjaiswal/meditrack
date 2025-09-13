@@ -12,7 +12,7 @@ public class UpdatePrescriptionRequest {
 
     private Long prescriptionId;
 
-    private List<Dosage> dosages;
+    private List<PrescriptionDosage> prescriptionDosages;
 
     private LocalDate nextAppointmentDate;
 
